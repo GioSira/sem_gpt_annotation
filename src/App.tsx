@@ -48,7 +48,7 @@ function App() {
     const [i, setI] = useState(0);
     const [answers, setAnswers] = useState<("yes" | "no")[]>([]);
     const [isWrong, setIsWrong] = useState<(true | false)[]>([]);
-    const [models, setModels] = useState<string[]>([]);
+    // const [models, setModels] = useState<string[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isDownloaded, setIsDownloaded] = useState(false);
     const [timeBetweenQuestionsStart, setTimeBetweenQuestionsStart] = useState(new Date());
@@ -129,7 +129,7 @@ function App() {
                             setTimeDiffs(data.timeDiffs);
                             setI(data.i);
                             setIsWrong(data.isWrong);
-                            setModels(data.models);
+                            // setModels(data.models);
                             setReady(true);
                         }
                     }
@@ -160,7 +160,7 @@ function App() {
                 const model = dataset[i]["model"];
                 setIsWrong([...isWrong, isWrongChecked]);
                 setTimeDiffs([...timeDiffs, timeDiff]);
-                setModels([...models, model]);
+                // setModels([...models, model]);
                 // Save the answers to firebase
                 const docRef = doc(firstore, "annotations/" + name);
                 await getDoc(docRef).then((docSnap) => {
@@ -173,7 +173,7 @@ function App() {
                             dataset: dataset,
                             isWrong: [...isWrong, checkbox.checked],
                             timeDiffs: [...timeDiffs, timeDiff],
-                            models: [...models, model],
+                            // models: [...models, model],
                             date: new Date(),
                         });
                     } else {
@@ -183,7 +183,7 @@ function App() {
                             i: newAnswers.length,
                             isWrong: [...isWrong, checkbox.checked],
                             timeDiffs: [...timeDiffs, timeDiff],
-                            models: [...models, model],
+                            // models: [...models, model],
                             date: new Date(),
                         });
                     }
@@ -261,26 +261,16 @@ function App() {
             : <div>
                 <div className="text-center justify-center mt-12">
                     {<MadeByMe/>}
-                    <h1 className="text-4xl font-bold">Is the concept correct with respect to the category and the criteria?</h1>
+                    <h1 className="text-4xl font-bold">
+                        Is the marked concept correct with respect to the <i>used for</i> relation?
+                    </h1>
                     <p className="text-xl mt-6" id="line">
-                        Category: {
-                            // @ts-ignore
-                            dataset ? dataset[i]["cat"] : ""
-                        }
-                    </p>
-                    <p className="text-xl mt-6" id="line">
-                        {
-                            // @ts-ignore
-                            dataset ? dataset[i]["criteria"] : ""
-                        }
-                    </p>
-                    <p className="text-xl mt-6" id="line">
-                        Concept: <span className="ring-2 ring-blue-500 ring-offset-4 ring-offset-slate-50 rounded-md">
+                        <span className="ring-2 ring-blue-500 ring-offset-4 ring-offset-slate-50 rounded-md">
                             <b>{
                                 // @ts-ignore
-                                dataset ? dataset[i]["selected"] : ""
+                                dataset ? dataset[i]["llm_concept"] : ""
                             }</b>
-                        </span>
+                        </span> is used for {dataset ? dataset[i]["concept"] : ""}
                     </p>
                 </div>
                 <div className="flex justify-center mt-8">

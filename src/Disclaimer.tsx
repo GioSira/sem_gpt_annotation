@@ -21,8 +21,8 @@ function Disclaimer() {
                     of text (e.g., "that satisfy the").
                 </p>
                 <p className="mt-2">
-                    You will need to complete <b>700</b> of these <b>annotations</b>, which should take about <b>30
-                    minutes</b>. It's important to note that this task
+                    You will need to complete <b>1000</b> of these <b>annotations</b>, which should take about <b>1
+                    hour</b>. It's important to note that this task
                     does not evaluate your knowledge of English, so you don't need to worry about being tested. If
                     you need more information about the word, you can use the internet to help you.
                 </p>
