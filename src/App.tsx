@@ -17,7 +17,7 @@ type DataType = {
     dataset: string[],
     isWrong: (true | false)[],
     timeDiffs: number[],
-    models: string[],
+    // models: string[],
     date: Date
 }
 
