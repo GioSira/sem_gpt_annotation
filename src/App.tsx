@@ -270,10 +270,10 @@ function App() {
                                 // @ts-ignore
                                 dataset ? dataset[i]["llm_concept"] : ""
                             }</b>
-                        </span> is used for {
+                        </span><pre>  [is/are] used for {
                             // @ts-ignore
                             dataset ? dataset[i]["concept"] : ""
-                        }
+                        }</pre>
                     </p>
                 </div>
                 <div className="flex justify-center mt-8">
