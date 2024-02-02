@@ -270,7 +270,10 @@ function App() {
                                 // @ts-ignore
                                 dataset ? dataset[i]["llm_concept"] : ""
                             }</b>
-                        </span> is used for {dataset ? dataset[i]["concept"] : ""}
+                        </span> is used for {
+                            // @ts-ignore
+                            dataset ? dataset[i]["concept"] : ""
+                        }
                     </p>
                 </div>
                 <div className="flex justify-center mt-8">
