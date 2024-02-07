@@ -12,7 +12,7 @@ function Example() {
                     <ul>
                         <li><i>wood</i> [is/are] used for toy</li>
                     </ul>
-                    the answer is <b>Yes</b> because wood could be used to make a toy.
+                    the answer is <b>Yes</b> because <b>wood</b> could be used to make a toy.
                 </p>
 
                 <div className="text-2xl mt-4">Incorrect Concept</div>
@@ -21,7 +21,7 @@ function Example() {
                     <ul>
                         <li><i>coffee</i> [is/are] used for toy</li>
                     </ul>
-                    the answer is <b>No</b> because the coffee cannot be used to make toys.
+                    the answer is <b>No</b> because the <b>coffee</b> cannot be used to make toys.
                 </p>
 
                 <div className="text-2xl mt-4">Wrong Concept</div>
@@ -31,7 +31,7 @@ function Example() {
                     <ul>
                         <li><i>this kind of wood</i> [is/are] used for toy</li>
                     </ul>
-                    will be labeled as <b>wrong</b> because "<i>this kind of wood</i>" is not a word or a multi-word.
+                    will be labeled as <b>wrong</b> because "<b>this kind of wood</b>" is a text fragment.
                 </p>
 
             </div>
