@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import {collection, CollectionReference, doc, getDoc, getFirestore, setDoc, updateDoc, connectFirestoreEmulator} from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 
-import React, {useState} from 'react'
+import React, {useState} from "react"
 import Disclaimer from "./Disclaimer"
 import MadeByMe from "./MadeByMe";
 import TopBanner from "./TopBanner";
@@ -22,20 +22,20 @@ type DataType = {
 }
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC4ucBLoaMpGMRfLh8q-cxPBGQIcq4MIz0",
-  authDomain: "semagram-gpt.firebaseapp.com",
-  projectId: "semagram-gpt",
-  storageBucket: "semagram-gpt.appspot.com",
-  messagingSenderId: "174798440592",
-  appId: "1:174798440592:web:ef74cfc206a4f3168bb015",
-  measurementId: "G-ZK9LP9L4M9"
-};
+    apiKey: "AIzaSyBeE-0G1UR86xEEYBV_MXhLp5LzLEf9LQ4",
+    authDomain: "app1-23c8d.firebaseapp.com",
+    projectId: "app1-23c8d",
+    storageBucket: "app1-23c8d.appspot.com",
+    messagingSenderId: "913621122781",
+    appId: "1:913621122781:web:36b707c8e33cfa3c016534",
+    measurementId: "G-7ER4CG4390"
+  };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const firstore = getFirestore(app);
-const col = collection(firstore, "ACL") as CollectionReference<DataType>;
+const col = collection(firstore, "SAC") as CollectionReference<DataType>;
 
 
 function App() {
@@ -140,6 +140,38 @@ function App() {
             });
         }
         setTimeBetweenQuestionsStart(new Date());
+    }
+
+    const relation_translation = (relation: string) => {
+        if(relation == 'part') {
+            return 'can have a';
+        } else if(relation == 'material') {
+            return 'can be made of';
+        } else if(relation == 'hypernym') {
+            return 'is a';
+        } else if(relation == 'hyponym') {
+            return 'is a general term for';
+        } else if(relation == 'behavior' || relation == 'size' || relation == 'efficiency' || relation == 'taste' || relation == 'shape' || relation == 'color_pattern' || relation == 'consistency') {
+            return "can be";
+        } else if(relation == 'activity') {
+            return "can";
+        } else if(relation == 'how_to_use') {
+            return "can be used to / can be eaten when";
+        } else if(relation == 'purpose') {
+            return "is/are used for";
+        } else if(relation == 'content') {
+            return "can contain";
+        } else if(relation == 'product') {
+            return "can produce / can be used in the making of";
+        } else if(relation == 'supply') {
+            return "can use";
+        } else if(relation == 'movement') {
+            return "can / are";
+        } else if(relation == 'time') {
+            return "are active during";
+        } else {
+            return "";
+        }
     }
 
     const next = async (newAnswers: ("yes" | "no" | "wrong")[]) => {
@@ -262,7 +294,7 @@ function App() {
                 <div className="text-center justify-center mt-12">
                     {<MadeByMe/>}
                     <h1 className="text-4xl font-bold">
-                        Is the marked concept correct with respect to the <i>used for</i> relation?
+                        Is the marked concept correct with respect to the <i>{dataset[i]["relation"]}</i> relation?
                     </h1>
                     <p className="text-xl mt-6" id="line">
                         <span className="ring-2 ring-blue-500 ring-offset-4 ring-offset-slate-50 rounded-md">
@@ -270,10 +302,15 @@ function App() {
                                 // @ts-ignore
                                 dataset ? dataset[i]["llm_concept"] : ""
                             }</b>
-                        </span><pre>  [is/are] used for {
+                        </span><pre> {
                             // @ts-ignore
+                            relation_translation(dataset[i]["relation"])
+                        } </pre>
+                        <pre>
+                            {
                             dataset ? dataset[i]["concept"] : ""
-                        }</pre>
+                        }
+                        </pre>
                     </p>
                 </div>
                 <div className="flex justify-center mt-8">
