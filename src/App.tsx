@@ -35,7 +35,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const firstore = getFirestore(app);
-const col = collection(firstore, "SAC") as CollectionReference<DataType>;
+const col = collection(firstore, "SAC_conceptnet") as CollectionReference<DataType>;
 
 
 function App() {
